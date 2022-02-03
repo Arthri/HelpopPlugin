@@ -1,4 +1,4 @@
-﻿namespace HelpopAPI
+﻿namespace HelpopAPI.Core
 {
     /// <summary>
     /// Represents a call for help.

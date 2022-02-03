@@ -1,7 +1,7 @@
-﻿namespace HelpopAPI
+﻿namespace HelpopAPI.Core
 {
     /// <summary>
-    /// Represents the account of a <see cref="IssueUser"/>.
+    /// Represents the account of an <see cref="IssueUser"/>.
     /// </summary>
     public class UserAccount
     {

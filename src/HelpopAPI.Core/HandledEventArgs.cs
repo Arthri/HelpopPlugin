@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HelpopAPI
+namespace HelpopAPI.Core
 {
     /// <summary>
     /// Represents event data with an additional <see cref="Handled"/> field to stop further handlers.
