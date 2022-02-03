@@ -1,21 +1,21 @@
 ﻿namespace HelpopAPI
 {
     /// <summary>
-    /// Represents the account of a <see cref="ReportUser"/>
+    /// Represents the account of a <see cref="IssueUser"/>.
     /// </summary>
-    public class ReportAccount
+    public class UserAccount
     {
         /// <summary>
-        /// Represents the account's ID
+        /// Represents the account's ID.
         /// </summary>
         public int ID { get; }
 
         /// <summary>
-        /// Represents the account's name
+        /// Represents the account's name.
         /// </summary>
         public string Name { get; }
 
-        public ReportAccount(
+        public UserAccount(
             int id,
             string name)
         {
