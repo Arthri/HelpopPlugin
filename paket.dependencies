@@ -1,0 +1,6 @@
+source https://api.nuget.org/v3/index.json
+
+nuget StackExchange.Redis ~> 2.2
+nuget Newtonsoft.Json ~> 13.0
+
+framework: .netstandard2.0
