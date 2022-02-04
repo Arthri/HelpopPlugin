@@ -111,8 +111,7 @@ namespace HelpopPlugin
                 // TODO: REPLACE WITH
                 if (tsPlayer.HasPermission("helpopplugin.issues.see"))
                 {
-                    // TODO: ALLOW CONFIG COLOR
-                    tsPlayer.SendMessage(issueString.Value, Color.Red);
+                    tsPlayer.SendMessage(issueString.Value, PluginSettings.ReportMessageColor);
                 }
             }
         }

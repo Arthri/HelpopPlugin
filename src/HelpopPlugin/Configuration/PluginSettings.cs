@@ -1,4 +1,5 @@
 ﻿using LrndefLib;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 
 namespace HelpopPlugin.Configuration
@@ -18,5 +19,29 @@ namespace HelpopPlugin.Configuration
         /// </summary>
         [JsonProperty("showCredits")]
         public bool ShowCredits { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the color of the report message.
+        /// </summary>
+        [JsonIgnore]
+        public Color ReportMessageColor { get; set; } = new Color(0xDB, 0xA2, 0x29);
+
+        /// <summary>
+        /// Gets or sets the color of the report message.
+        /// </summary>
+        /// <remarks>The value should be in RGBA decimal/integer format.</remarks>
+        [JsonProperty("reportMessageColor")]
+        public uint ReportMessageColorPacked
+        {
+            get => (ReportMessageColor.PackedValue & 0x00FF00FF)
+                | ((ReportMessageColor.packedValue & 0x0000FF) << 16)
+                | ((ReportMessageColor.packedValue & 0xFF) >> 16);
+
+            set => ReportMessageColor = new Color(
+                   (value & 0x00FF00FF)
+                | ((value & 0xFF) >> 16)
+                | ((value & 0x0000FF) << 16)
+            );
+        }
     }
 }
