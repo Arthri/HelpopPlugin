@@ -1,2 +1,3 @@
 group TShockDependencies
   StackExchange.Redis
+  LrndefLib
