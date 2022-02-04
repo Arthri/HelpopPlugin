@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/Arthri/HelpopAPI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>terraria;tshock;tshock-plugin</PackageTags>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
