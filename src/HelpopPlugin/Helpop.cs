@@ -23,6 +23,9 @@ namespace HelpopPlugin
 
         private readonly ConfigurationManager _configManager = new ConfigurationManager();
 
+        /// <summary>
+        /// Gets or sets the general plugin settings.
+        /// </summary>
         public PluginSettings PluginSettings
         {
             get => _configManager.PluginConfigFile.Settings;
