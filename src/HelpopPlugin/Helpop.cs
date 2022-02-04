@@ -7,7 +7,7 @@ using TerrariaApi.Server;
 namespace HelpopPlugin
 {
     [ApiVersion(2, 1)]
-    public class Helpop : TerrariaPlugin
+    public partial class Helpop : TerrariaPlugin
     {
         /// <inheritdoc />
         public override string Name => typeof(Helpop).Assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title;
@@ -37,6 +37,8 @@ namespace HelpopPlugin
         public override void Initialize()
         {
             _configManager.Load();
+
+            Initialize_Credits();
         }
 
         /// <inheritdoc />
