@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/Arthri/HelpopAPI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Arthri/HelpopAPI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>terraria tshock tshock-plugin</PackageTags>
+    <PackageTags>terraria;tshock;tshock-plugin</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
