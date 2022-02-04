@@ -1,4 +1,4 @@
-﻿using HelpopAPI.Core;
+using HelpopAPI.Core;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -38,7 +38,7 @@ namespace HelpopPlugin
         /// <summary>
         /// Disconnects from redis.
         /// </summary>
-        public static void DisconnectAsync()
+        public static void Disconnect()
         {
             _connectionMultiplexer.Dispose();
             _connectionMultiplexer = null;
