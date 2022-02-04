@@ -1,3 +1,4 @@
+using HelpopPlugin.Configuration;
 using System;
 using System.Reflection;
 using Terraria;
@@ -20,6 +21,14 @@ namespace HelpopPlugin
         /// <inheritdoc />
         public override string Author => typeof(Helpop).Assembly.GetCustomAttribute<AssemblyCompanyAttribute>().Company;
 
+        private readonly ConfigurationManager _configManager = new ConfigurationManager();
+
+        public PluginSettings PluginSettings
+        {
+            get => _configManager.PluginConfigFile.Settings;
+            set => _configManager.PluginConfigFile.Settings = value;
+        }
+
         public Helpop(Main game) : base(game)
         {
         }
@@ -27,6 +36,7 @@ namespace HelpopPlugin
         /// <inheritdoc />
         public override void Initialize()
         {
+            _configManager.Load();
         }
 
         /// <inheritdoc />
