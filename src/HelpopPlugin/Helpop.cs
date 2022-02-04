@@ -79,8 +79,11 @@ namespace HelpopPlugin
             Events.OnIssue += HandleOnIssue;
             OnIssue += HandleOnIssue_OnMainThread;
 
-            // TODO: REPLACE WITH
-            Commands.ChatCommands.Add(new Command("helpopplugin.issues.raise", Command_RaiseIssue, "raiseissue", "issue", "helpop", "report", "sendhelp"));
+            Commands.ChatCommands.Add(new Command(
+                Permissions.Issues_Raise,
+                Command_RaiseIssue,
+                "raiseissue", "issue", "helpop", "report", "sendhelp"
+            ));
         }
 
         /// <inheritdoc />
@@ -108,8 +111,7 @@ namespace HelpopPlugin
             {
                 var tsPlayer = TShock.Players[i];
 
-                // TODO: REPLACE WITH
-                if (tsPlayer.HasPermission("helpopplugin.issues.see"))
+                if (tsPlayer.HasPermission(Permissions.Issues_See))
                 {
                     tsPlayer.SendMessage(issueString.Value, PluginSettings.ReportMessageColor);
                 }
