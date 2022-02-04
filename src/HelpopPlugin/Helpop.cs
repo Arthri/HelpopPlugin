@@ -131,7 +131,10 @@ namespace HelpopPlugin
                 ? null
                 : new UserAccount(account.ID, account.Name);
             var issuer = new IssueUser(args.Player.Name, args.Player.IP, args.Player.UUID, issuerAccount);
-            var issue = new Issue(message, issuer);
+            var issue = new Issue(message, issuer)
+            {
+                Origin = PluginSettings.ReportOrigin,
+            };
 
             var sendTask = RedisConnector.SendIssueAsync(issue);
             sendTask

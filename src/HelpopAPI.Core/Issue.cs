@@ -16,6 +16,11 @@
         public IssueUser Issuer { get; }
 
         /// <summary>
+        /// Represents the source of the issue. This can be a server, an app, etc.
+        /// </summary>
+        public string Origin { get; init; }
+
+        /// <summary>
         /// Initializes a new issue with the specified message and user.
         /// </summary>
         /// <param name="message">The message.</param>

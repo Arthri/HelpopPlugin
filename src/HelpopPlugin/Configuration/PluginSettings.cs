@@ -21,6 +21,13 @@ namespace HelpopPlugin.Configuration
         public bool ShowCredits { get; set; } = true;
 
         /// <summary>
+        /// Gets or sets the current server's name when sending reports.
+        ///
+        /// For example, with the value "<c>Server1</c>", the report message can use it like so: <c>[Report] from Server1: ...</c>
+        /// </summary>
+        public string ReportOrigin { get; set; }
+
+        /// <summary>
         /// Gets or sets the color of the report message.
         /// </summary>
         [JsonIgnore]
