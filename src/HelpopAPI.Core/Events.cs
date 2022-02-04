@@ -5,7 +5,7 @@
         private static readonly HandledHandlersCollection<OnIssueEventArgs> _onIssueHandlers = new();
 
         /// <summary>
-        /// Occurs when a report is issued.
+        /// Occurs when an issue is issued.
         /// </summary>
         public static event HandledHandler<OnIssueEventArgs> OnIssue
         {
