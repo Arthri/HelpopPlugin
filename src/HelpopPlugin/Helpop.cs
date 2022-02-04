@@ -1,3 +1,4 @@
+using HelpopAPI.Core;
 using HelpopPlugin.Configuration;
 using System;
 using System.Reflection;
@@ -41,6 +42,25 @@ namespace HelpopPlugin
             set => _configManager.RedisConfigFile.Settings = value;
         }
 
+        private readonly HandledHandlersCollection<OnIssueEventArgs> _onIssueHandlers = new HandledHandlersCollection<OnIssueEventArgs>();
+
+        /// <summary>
+        /// Occurs when an issue is issued.
+        /// </summary>
+        /// <remarks>As opposed to <see cref="Events.OnIssue"/>, this event is always invoked on the main thread.</remarks>
+        public event HandledHandler<OnIssueEventArgs> OnIssue
+        {
+            add
+            {
+                _onIssueHandlers.Add(value);
+            }
+
+            remove
+            {
+                _onIssueHandlers.Remove(value);
+            }
+        }
+
         public Helpop(Main game) : base(game)
         {
         }
@@ -52,6 +72,8 @@ namespace HelpopPlugin
 
             Initialize_Credits();
             Initialize_Redis();
+
+            Events.OnIssue += HandleOnIssue;
         }
 
         /// <inheritdoc />
@@ -60,8 +82,15 @@ namespace HelpopPlugin
             if (disposing)
             {
                 Dispose_Redis();
+
+                Events.OnIssue -= HandleOnIssue;
             }
             base.Dispose(disposing);
+        }
+
+        private void HandleOnIssue(OnIssueEventArgs eventArgs)
+        {
+            Main.QueueMainThreadAction(() => _onIssueHandlers.Invoke(eventArgs));
         }
     }
 }
