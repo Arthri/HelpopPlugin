@@ -1,9 +1,11 @@
 using HelpopAPI.Core;
 using HelpopPlugin.Configuration;
+using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
+using TShockAPI;
 
 namespace HelpopPlugin
 {
@@ -74,6 +76,7 @@ namespace HelpopPlugin
             Initialize_Redis();
 
             Events.OnIssue += HandleOnIssue;
+            OnIssue += HandleOnIssue_OnMainThread;
         }
 
         /// <inheritdoc />
@@ -91,6 +94,30 @@ namespace HelpopPlugin
         private void HandleOnIssue(OnIssueEventArgs eventArgs)
         {
             Main.QueueMainThreadAction(() => _onIssueHandlers.Invoke(eventArgs));
+        }
+
+        private void HandleOnIssue_OnMainThread(OnIssueEventArgs eventArgs)
+        {
+            var issueString = new Lazy<string>(() => IssueAsString(eventArgs.IssuedIssue));
+
+            for (int i = 0; i < TShock.Players.Length; i++)
+            {
+                var tsPlayer = TShock.Players[i];
+
+                // TODO: REPLACE WITH
+                if (tsPlayer.HasPermission("helpopplugin.issues.see"))
+                {
+                    // TODO: ALLOW CONFIG COLOR
+                    tsPlayer.SendMessage(issueString.Value, Color.Red);
+                }
+            }
+        }
+
+        private string IssueAsString(Issue issue)
+        {
+            // TODO: REPLACE WITH SCRIBAN
+            var issuer = issue.Issuer;
+            return $"[Report] from {issuer.Name}: {issue.Message}";
         }
     }
 }
