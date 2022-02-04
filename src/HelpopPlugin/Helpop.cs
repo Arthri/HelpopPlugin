@@ -3,6 +3,7 @@ using HelpopPlugin.Configuration;
 using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
+using System.Threading.Tasks;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -77,6 +78,9 @@ namespace HelpopPlugin
 
             Events.OnIssue += HandleOnIssue;
             OnIssue += HandleOnIssue_OnMainThread;
+
+            // TODO: REPLACE WITH
+            Commands.ChatCommands.Add(new Command("helpopplugin.issues.raise", Command_RaiseIssue, "raiseissue", "issue", "helpop", "report", "sendhelp"));
         }
 
         /// <inheritdoc />
@@ -118,6 +122,44 @@ namespace HelpopPlugin
             // TODO: REPLACE WITH SCRIBAN
             var issuer = issue.Issuer;
             return $"[Report] from {issuer.Name}: {issue.Message}";
+        }
+
+        private void Command_RaiseIssue(CommandArgs args)
+        {
+            var message = string.Join(" ", args.Parameters);
+            var account = args.Player.Account;
+            var issuerAccount = account == null
+                ? null
+                : new UserAccount(account.ID, account.Name);
+            var issuer = new IssueUser(args.Player.Name, args.Player.IP, args.Player.UUID, issuerAccount);
+            var issue = new Issue(message, issuer);
+
+            var sendTask = RedisConnector.SendIssueAsync(issue);
+            sendTask
+                .ContinueWith((task) => Main.QueueMainThreadAction(() => OnSendTaskFinish(task)));
+
+            args.Player.SendInfoMessage("Sending report...");
+
+            void OnSendTaskFinish(Task<long> task)
+            {
+                if (task.IsCanceled)
+                {
+                    args.Player.SendErrorMessage("Report was intercepted.");
+                }
+                else if (task.IsFaulted)
+                {
+                    args.Player.SendErrorMessage("Encountered error while sending report. Please contact administrators via another channel");
+                    TShock.Log.Error($"Error while sending report: {task.Exception}");
+                }
+                else if (!task.IsCompleted)
+                {
+                    args.Player.SendErrorMessage("Report was not sent.");
+                }
+                else
+                {
+                    args.Player.SendSuccessMessage("Report successfully sent");
+                }
+            }
         }
     }
 }
