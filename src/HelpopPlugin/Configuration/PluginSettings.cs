@@ -1,4 +1,5 @@
 ﻿using LrndefLib;
+using Newtonsoft.Json;
 
 namespace HelpopPlugin.Configuration
 {
@@ -15,6 +16,7 @@ namespace HelpopPlugin.Configuration
         /// <summary>
         /// Gets or sets whether credits(to dependencies) should be shown on plugin initialization.
         /// </summary>
+        [JsonProperty("showCredits")]
         public bool ShowCredits { get; set; } = true;
     }
 }
