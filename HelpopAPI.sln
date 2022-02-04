@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpopAPI.Redis", "src\HelpopAPI.Redis\HelpopAPI.Redis.csproj", "{4E64F3F7-869A-4DA8-B309-5E88BA50CCB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpopPlugin", "src\HelpopPlugin\HelpopPlugin.csproj", "{145439B0-BC0B-461E-B484-93298C3BA0C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +22,10 @@ Global
 		{11656494-5967-4DF6-BA1F-550A63E69C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11656494-5967-4DF6-BA1F-550A63E69C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11656494-5967-4DF6-BA1F-550A63E69C50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E64F3F7-869A-4DA8-B309-5E88BA50CCB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E64F3F7-869A-4DA8-B309-5E88BA50CCB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E64F3F7-869A-4DA8-B309-5E88BA50CCB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E64F3F7-869A-4DA8-B309-5E88BA50CCB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{145439B0-BC0B-461E-B484-93298C3BA0C3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{145439B0-BC0B-461E-B484-93298C3BA0C3}.Debug|Any CPU.Build.0 = Debug|x86
+		{145439B0-BC0B-461E-B484-93298C3BA0C3}.Release|Any CPU.ActiveCfg = Release|x86
+		{145439B0-BC0B-461E-B484-93298C3BA0C3}.Release|Any CPU.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

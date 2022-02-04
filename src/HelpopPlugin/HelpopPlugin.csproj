@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <Platforms>x86</Platforms>
+    <Version>0.0.1</Version>
+    <Authors>Arthri</Authors>
+    <Product>HelpopAPI</Product>
+    <Description>A TShock plugin that implements the HelpopAPI</Description>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <Copyright>Copyright © Arthri 2022</Copyright>
+    <PackageProjectUrl>https://github.com/Arthri/HelpopAPI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Arthri/HelpopAPI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>terraria tshock tshock-plugin</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin/Debug</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutputPath>bin/Release</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelpopAPI.Core\HelpopAPI.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI">
+      <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\OTAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="TerrariaServer">
+      <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\TerrariaServer.exe</HintPath>
+    </Reference>
+    <Reference Include="TShockAPI">
+      <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\ServerPlugins\TShockAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

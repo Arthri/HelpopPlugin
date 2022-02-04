@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace HelpopAPI.Redis
 {
-    public static class Connecter
+    public static class RedisConnector
     {
+        private static class ChannelNames
+        {
+            public static readonly string Issues = "helpopapi-issues";
+        }
+
         private static ConnectionMultiplexer _connectionMultiplexer;
 
         /// <summary>
@@ -42,7 +47,7 @@ namespace HelpopAPI.Redis
         private static async Task Subscribe(ConnectionMultiplexer multiplexer)
         {
             var subscriber = multiplexer.GetSubscriber();
-            await subscriber.SubscribeAsync("helpopapi-issues", OnMessage);
+            await subscriber.SubscribeAsync(ChannelNames.Issues, OnMessage);
         }
 
         private static void OnMessage(RedisChannel channel, RedisValue message)
@@ -51,6 +56,19 @@ namespace HelpopAPI.Redis
             var issue = JsonConvert.DeserializeObject<Issue>(jsonData);
 
             Events.InvokeOnIssue(issue);
+        }
+
+        /// <summary>
+        /// Sends an issue to redis.
+        /// </summary>
+        /// <param name="issue">The issue to send.</param>
+        /// <returns>The count of the message receivers.</returns>
+        public static async Task<long> SendIssueAsync(Issue issue)
+        {
+            var subscriber = _connectionMultiplexer.GetSubscriber();
+            var jsonData = JsonConvert.SerializeObject(issue);
+            var result = await subscriber.PublishAsync(ChannelNames.Issues, jsonData);
+            return result;
         }
     }
 }

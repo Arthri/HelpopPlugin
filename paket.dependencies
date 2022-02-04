@@ -1,6 +1,11 @@
+framework: .netstandard2.0
+
 source https://api.nuget.org/v3/index.json
 
-nuget StackExchange.Redis ~> 2.2
-nuget Newtonsoft.Json ~> 13.0
+group TShockDependencies
+  framework: net472
 
-framework: .netstandard2.0
+  source https://api.nuget.org/v3/index.json
+  nuget StackExchange.Redis ~> 2.2
+
+  http https://github.com/Pryaxis/TShock/releases/download/v4.5.12/TShock4.5.12_Terraria1.4.3.2.zip TShock/TShock.zip
