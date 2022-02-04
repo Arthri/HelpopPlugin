@@ -17,6 +17,11 @@ namespace HelpopPlugin.Configuration
         public VersionedConfigFile<PluginSettings> PluginConfigFile { get; private set; }
 
         /// <summary>
+        /// Gets an object representing Redis configuration.
+        /// </summary>
+        public VersionedConfigFile<RedisSettings> RedisConfigFile { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of <see cref="ConfigurationManager"/>.
         /// </summary>
         internal ConfigurationManager()
@@ -36,6 +41,9 @@ namespace HelpopPlugin.Configuration
             PluginConfigFile = new VersionedConfigFile<PluginSettings>(
                 PluginSettings.CurrentVersion
             );
+            RedisConfigFile = new VersionedConfigFile<RedisSettings>(
+                RedisSettings.CurrentVersion
+            );
 
             Reload();
 
@@ -53,6 +61,7 @@ namespace HelpopPlugin.Configuration
             }
 
             ReadOrCreateConfig(Paths.PluginConfigPath, PluginConfigFile);
+            ReadOrCreateConfig(Paths.RedisConfigPath, RedisConfigFile);
         }
 
         private void ReadOrCreateConfig<T>(string path, VersionedConfigFile<T> config)

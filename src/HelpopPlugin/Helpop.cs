@@ -32,6 +32,15 @@ namespace HelpopPlugin
             set => _configManager.PluginConfigFile.Settings = value;
         }
 
+        /// <summary>
+        /// Gets or sets the Redis settings.
+        /// </summary>
+        public RedisSettings RedisSettings
+        {
+            get => _configManager.RedisConfigFile.Settings;
+            set => _configManager.RedisConfigFile.Settings = value;
+        }
+
         public Helpop(Main game) : base(game)
         {
         }
@@ -42,6 +51,7 @@ namespace HelpopPlugin
             _configManager.Load();
 
             Initialize_Credits();
+            Initialize_Redis();
         }
 
         /// <inheritdoc />
@@ -49,6 +59,7 @@ namespace HelpopPlugin
         {
             if (disposing)
             {
+                Dispose_Redis();
             }
             base.Dispose(disposing);
         }

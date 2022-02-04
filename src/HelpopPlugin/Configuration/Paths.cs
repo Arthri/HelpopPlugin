@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace HelpopPlugin.Configuration
 {
@@ -26,5 +21,10 @@ namespace HelpopPlugin.Configuration
         /// Gets the path to the file used to store general plugin configuration.
         /// </summary>
         public static readonly string PluginConfigPath = Path.Combine(SavePath, "config.json");
+
+        /// <summary>
+        /// Gets the path to the file used to store Redis configuration.
+        /// </summary>
+        public static readonly string RedisConfigPath = Path.Combine(SavePath, "config-redis.json");
     }
 }
