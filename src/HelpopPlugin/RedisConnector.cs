@@ -1,4 +1,4 @@
-using HelpopAPI.Core;
+﻿using HelpopAPI.Core;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -19,19 +19,17 @@ namespace HelpopPlugin
         /// <summary>
         /// Connects to Redis.
         /// </summary>
-        /// <param name="configure">An action to change the configuration.</param>
+        /// <param name="config">A function that returns the configuration.</param>
         /// <param name="logger">A logger to log to.</param>
         /// <returns>A task representing this operation.</returns>
-        public static async Task ConnectAsync(Action<ConfigurationOptions> configure, TextWriter logger = null)
+        public static async Task ConnectAsync(Func<ConfigurationOptions> config, TextWriter logger = null)
         {
             if (_connectionMultiplexer != null && (_connectionMultiplexer.IsConnected || _connectionMultiplexer.IsConnecting))
             {
                 return;
             }
 
-            var config = new ConfigurationOptions();
-            configure(config);
-            _connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(config, logger);
+            _connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(config(), logger);
             await Subscribe(_connectionMultiplexer);
         }
 
