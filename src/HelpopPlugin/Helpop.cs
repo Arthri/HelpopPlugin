@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace HelpopPlugin
 {
@@ -62,6 +63,8 @@ namespace HelpopPlugin
             }
         }
 
+        private bool _tshockReloadHooked = false;
+
         public Helpop(Main game) : base(game)
         {
         }
@@ -78,10 +81,17 @@ namespace HelpopPlugin
             OnIssue += HandleOnIssue_OnMainThread;
 
             Commands.ChatCommands.Add(new Command(
+                Permissions.Config_Reload,
+                Command_ReloadConfig,
+                "helpopplugin:reload", "hopp:reload", "helpopreload"
+            ));
+            Commands.ChatCommands.Add(new Command(
                 Permissions.Issues_Raise,
                 Command_RaiseIssue,
                 "raiseissue", "issue", "helpop", "report", "sendhelp"
             ));
+
+            ReloadConfig();
         }
 
         /// <inheritdoc />
@@ -123,6 +133,13 @@ namespace HelpopPlugin
             return $"[Report] from {issuer.Name}: {issue.Message}";
         }
 
+        private void Command_ReloadConfig(CommandArgs args)
+        {
+            TShock.Log.Info($"{args.Player.Name} initiated HelpopPlugin config reload.");
+
+            ReloadConfig();
+        }
+
         private void Command_RaiseIssue(CommandArgs args)
         {
             var message = string.Join(" ", args.Parameters);
@@ -162,6 +179,33 @@ namespace HelpopPlugin
                     args.Player.SendSuccessMessage("Report successfully sent");
                 }
             }
+        }
+
+        private void ReloadConfig()
+        {
+            _configManager.Reload();
+
+            if (_tshockReloadHooked)
+            {
+                if (!PluginSettings.UseTShockReload)
+                {
+                    GeneralHooks.ReloadEvent -= OnTShockReload;
+                    _tshockReloadHooked = false;
+                }
+            }
+            else
+            {
+                if (PluginSettings.UseTShockReload)
+                {
+                    GeneralHooks.ReloadEvent += OnTShockReload;
+                    _tshockReloadHooked = true;
+                }
+            }
+        }
+
+        private void OnTShockReload(ReloadEventArgs args)
+        {
+            ReloadConfig();
         }
     }
 }

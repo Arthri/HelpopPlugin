@@ -50,5 +50,11 @@ namespace HelpopPlugin.Configuration
                 | ((value & 0x0000FF) << 16)
             );
         }
+
+        /// <summary>
+        /// Gets or sets whether the plugin should react to TShock's config reload function.
+        /// </summary>
+        [JsonProperty("useTShockReload")]
+        public bool UseTShockReload { get; set; } = true;
     }
 }

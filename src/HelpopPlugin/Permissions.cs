@@ -6,6 +6,11 @@
     public static class Permissions
     {
         /// <summary>
+        /// Gets the permission that allows users to reload the plugin config.
+        /// </summary>
+        public static readonly string Config_Reload = "helpopplugin.config.reload";
+
+        /// <summary>
         /// Gets the permission that allows users to see issues.
         /// </summary>
         public static readonly string Issues_See = "helpopplugin.issues.see";
