@@ -4,6 +4,7 @@ using StackExchange.Redis;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using TShockAPI;
 
 namespace HelpopPlugin.Redis
 {
@@ -24,15 +25,22 @@ namespace HelpopPlugin.Redis
 
             private static void OnMessage(RedisChannel channel, RedisValue value)
             {
-                var jsonData = (string)value;
-                var message = JsonConvert.DeserializeObject<IssueRaiseMessage>(jsonData);
-
-                if (message.Source.Equals(ServerIdentifier))
+                try
                 {
-                    return;
-                }
+                    var jsonData = (string)value;
+                    var message = JsonConvert.DeserializeObject<IssueRaiseMessage>(jsonData);
 
-                Events.InvokeOnIssue(message.IssuedIssue);
+                    if (message.Source.Equals(ServerIdentifier))
+                    {
+                        return;
+                    }
+
+                    Events.InvokeOnIssue(message.IssuedIssue);
+                }
+                catch (Exception e)
+                {
+                    TShock.Log.Error($"Error while parsing message: {e}");
+                }
             }
         }
 
