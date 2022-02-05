@@ -75,7 +75,17 @@ namespace HelpopPlugin
             sendTask
                 .ContinueWith((task) => Main.QueueMainThreadAction(() => OnSendTaskFinish(task)));
 
-            args.Player.SendInfoMessage("Sending report...");
+            try
+            {
+                Events.InvokeOnIssue(issue);
+            }
+            catch (Exception e)
+            {
+                TShock.Log.Error($"Failed to send report locally: {e}");
+                args.Player.SendInfoMessage("Encountered error while sending report to the current server. Please contact administrators via another channel");
+            }
+
+            args.Player.SendInfoMessage("Sending report to other servers...");
 
             void OnSendTaskFinish(Task<long> task)
             {
