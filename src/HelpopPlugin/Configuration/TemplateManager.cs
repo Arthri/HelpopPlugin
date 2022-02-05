@@ -60,18 +60,26 @@ namespace HelpopPlugin.Configuration
             {
                 using (var stream = assembly.GetManifestResourceStream(resourcePath))
                 {
-                    using (var fs = new FileStream(
-                        path,
-                        FileMode.CreateNew,
-                        FileAccess.Write,
-                        FileShare.None))
+                    if (stream == null)
                     {
-                        stream.CopyTo(fs);
+                        templateText = "(Fallback format) [Report] {{Issue.Message}}";
+                        ServerApi.LogWriter.PluginWriteLine(_plugin, "Fatal: Embedded resource ReportTemplate not found", TraceLevel.Error);
                     }
-
-                    using (var reader = new StreamReader(stream))
+                    else
                     {
-                        templateText = reader.ReadToEnd();
+                        using (var fs = new FileStream(
+                            path,
+                            FileMode.CreateNew,
+                            FileAccess.Write,
+                            FileShare.None))
+                        {
+                            stream.CopyTo(fs);
+                        }
+
+                        using (var reader = new StreamReader(stream))
+                        {
+                            templateText = reader.ReadToEnd();
+                        }
                     }
                 }
             }
