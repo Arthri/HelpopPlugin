@@ -51,6 +51,11 @@ namespace HelpopPlugin
             {
                 var tsPlayer = TShock.Players[i];
 
+                if (tsPlayer == null)
+                {
+                    continue;
+                }
+
                 if (tsPlayer.HasPermission(Permissions.Issues_See))
                 {
                     tsPlayer.SendMessage(issueString.Value, PluginSettings.ReportMessageColor);
