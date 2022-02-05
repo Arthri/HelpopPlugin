@@ -206,14 +206,21 @@ namespace HelpopPlugin
 
         #endregion
 
-        public void Invoke(T args)
+        public void Invoke(T args, Action<HandledHandler<T>, Exception> onException = null)
         {
             int i = 0;
             while (i < _handlers.Count && !args.Handled)
             {
                 var entry = _handlers[i];
 
-                entry.Handler(args);
+                try
+                {
+                    entry.Handler(args);
+                }
+                catch (Exception e)
+                {
+                    onException?.Invoke(entry.Handler, e);
+                }
 
                 i++;
             }
@@ -223,7 +230,14 @@ namespace HelpopPlugin
 
                 if (entry.AlwaysRun)
                 {
-                    entry.Handler(args);
+                    try
+                    {
+                        entry.Handler(args);
+                    }
+                    catch (Exception e)
+                    {
+                        onException?.Invoke(entry.Handler, e);
+                    }
                 }
 
                 i++;

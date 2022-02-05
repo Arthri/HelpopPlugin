@@ -40,7 +40,12 @@ namespace HelpopPlugin
 
         private void HandleOnIssue(OnIssueEventArgs eventArgs)
         {
-            Main.QueueMainThreadAction(() => _onIssueHandlers.Invoke(eventArgs));
+            Main.QueueMainThreadAction(() =>
+                _onIssueHandlers.Invoke(
+                    eventArgs,
+                    (handler, exception) => TShock.Log.Error($"Error while invoking {handler.Method.DeclaringType.FullName}:{handler.Method.Name}: {exception}")
+                )
+            );
         }
 
         private void HandleOnIssue_OnMainThread(OnIssueEventArgs eventArgs)
