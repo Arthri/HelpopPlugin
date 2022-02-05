@@ -15,7 +15,7 @@ namespace HelpopPlugin.Redis
     {
         private static class Issues_Raise
         {
-            internal static readonly string ChannelName = "helpopapi-issues-raise";
+            internal static readonly string ChannelName = "helpopplugin-issues-raise";
 
             internal static async Task Subscribe(ConnectionMultiplexer multiplexer)
             {
