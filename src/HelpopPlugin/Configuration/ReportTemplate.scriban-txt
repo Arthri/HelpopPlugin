@@ -1,0 +1,1 @@
+﻿[Report]{{if Issue.Origin}} from [{{Issue.Origin}}]{{end}} by {{Issue.Issuer.Name}}{{if Issue.Issuer.Account}}({{Issue.Issuer.Account.Name}}){{end}}: {{Issue.Message}}

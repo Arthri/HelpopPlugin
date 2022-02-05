@@ -26,5 +26,10 @@ namespace HelpopPlugin.Configuration
         /// Gets the path to the file used to store Redis configuration.
         /// </summary>
         public static readonly string RedisConfigPath = Path.Combine(SavePath, "config-redis.json");
+
+        /// <summary>
+        /// Gets the path to the file used to store the report template.
+        /// </summary>
+        public static readonly string ReportTemplatePath = Path.Combine(SavePath, "report-template.scriban-txt");
     }
 }

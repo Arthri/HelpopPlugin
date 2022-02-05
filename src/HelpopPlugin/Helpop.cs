@@ -1,4 +1,5 @@
 using HelpopPlugin.Configuration;
+using Scriban;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -25,6 +26,8 @@ namespace HelpopPlugin
         public override string Author => typeof(Helpop).Assembly.GetCustomAttribute<AssemblyCompanyAttribute>().Company;
 
         private readonly ConfigurationManager _configManager = new ConfigurationManager();
+
+        private TemplateManager _templateManager;
 
         /// <summary>
         /// Gets or sets the general plugin settings.
@@ -65,6 +68,12 @@ namespace HelpopPlugin
 
         private bool _tshockReloadHooked = false;
 
+        public Template ReportTemplate
+        {
+            get => _templateManager.ReportTemplate;
+            set => _templateManager.ReportTemplate = value;
+        }
+
         public Helpop(Main game) : base(game)
         {
         }
@@ -72,7 +81,9 @@ namespace HelpopPlugin
         /// <inheritdoc />
         public override void Initialize()
         {
-            _configManager.Load();
+            _templateManager = new TemplateManager(this);
+
+            ReloadConfig();
 
             Initialize_Credits();
             Initialize_Redis();
@@ -90,8 +101,6 @@ namespace HelpopPlugin
                 Command_RaiseIssue,
                 "raiseissue", "issue", "helpop", "report", "sendhelp"
             ));
-
-            ReloadConfig();
         }
 
         /// <inheritdoc />
@@ -113,7 +122,7 @@ namespace HelpopPlugin
 
         private void HandleOnIssue_OnMainThread(OnIssueEventArgs eventArgs)
         {
-            var issueString = new Lazy<string>(() => IssueAsString(eventArgs.IssuedIssue));
+            var issueString = new Lazy<string>(() => ReportTemplate.Render(new { Issue = eventArgs.IssuedIssue }));
 
             for (int i = 0; i < TShock.Players.Length; i++)
             {
@@ -124,13 +133,6 @@ namespace HelpopPlugin
                     tsPlayer.SendMessage(issueString.Value, PluginSettings.ReportMessageColor);
                 }
             }
-        }
-
-        private string IssueAsString(Issue issue)
-        {
-            // TODO: REPLACE WITH SCRIBAN
-            var issuer = issue.Issuer;
-            return $"[Report] from {issuer.Name}: {issue.Message}";
         }
 
         private void Command_ReloadConfig(CommandArgs args)
@@ -184,6 +186,7 @@ namespace HelpopPlugin
         private void ReloadConfig()
         {
             _configManager.Reload();
+            _templateManager.Reload();
 
             if (_tshockReloadHooked)
             {
