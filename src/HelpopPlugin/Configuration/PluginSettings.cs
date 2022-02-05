@@ -40,14 +40,20 @@ namespace HelpopPlugin.Configuration
         [JsonProperty("reportMessageColor")]
         public uint ReportMessageColorPacked
         {
-            get => (ReportMessageColor.PackedValue & 0x00FF00FF)
-                | ((ReportMessageColor.packedValue & 0x0000FF) << 16)
-                | ((ReportMessageColor.packedValue & 0xFF) >> 16);
+            get
+            {
+                var packedValue = ReportMessageColor.PackedValue;
+                return (packedValue >> 24)
+                      | ((packedValue & 0x00FF) >> 8)
+                      | ((packedValue & 0x0000FF) << 8)
+                      | ((packedValue & 0x000000FF) << 24);
+            }
 
             set => ReportMessageColor = new Color(
-                   (value & 0x00FF00FF)
-                | ((value & 0xFF) >> 16)
-                | ((value & 0x0000FF) << 16)
+                    (value >> 24)
+                  | ((value & 0x00FF) >> 8)
+                  | ((value & 0x0000FF) << 8)
+                  | ((value & 0x000000FF) << 24)
             );
         }
 
