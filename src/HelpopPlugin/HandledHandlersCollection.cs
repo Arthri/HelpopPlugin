@@ -66,6 +66,11 @@ namespace HelpopPlugin
 
         #endregion
 
+        public HandledHandlersCollection()
+        {
+            _handlers = new List<HandlerEntry>();
+        }
+
         #region List Methods
 
         /// <inheritdoc />
