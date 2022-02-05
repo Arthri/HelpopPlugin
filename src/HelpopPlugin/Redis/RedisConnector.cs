@@ -1,4 +1,4 @@
-using HelpopPlugin.Redis.Messages;
+﻿using HelpopPlugin.Redis.Messages;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -52,7 +52,7 @@ namespace HelpopPlugin.Redis
         public static async Task<long> SendIssueAsync(Issue issue)
         {
             var subscriber = _connectionMultiplexer.GetSubscriber();
-            var message = new IssueRaiseMessage(ServerIdentifier, issue);
+            var message = new IssueRaiseMessage(ServerIdentifier, new RedisIssue(issue, ServerIdentifier));
             var jsonData = JsonConvert.SerializeObject(message);
             var result = await subscriber.PublishAsync(Issues_Raise.ChannelName, jsonData);
             return result;

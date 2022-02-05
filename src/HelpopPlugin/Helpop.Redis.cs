@@ -2,7 +2,10 @@
 using StackExchange.Redis;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Terraria;
 using TerrariaApi.Server;
+using TShockAPI;
 using static HelpopPlugin.Configuration.RedisSettings;
 
 namespace HelpopPlugin
@@ -27,12 +30,15 @@ namespace HelpopPlugin
                         TraceLevel.Error);
                     break;
             }
+
+            Events.OnIssue += HandleOnIssue_RedisBroadcast;
         }
 
         private void Dispose_Redis()
         {
             RedisConnector.Disconnect();
             ServerApi.Hooks.GamePostInitialize.Deregister(this, OnGamePostInitialize_Redis);
+            Events.OnIssue -= HandleOnIssue_RedisBroadcast;
         }
 
         private void ConnectRedis()
@@ -57,6 +63,30 @@ namespace HelpopPlugin
         private void OnGamePostInitialize_Redis(EventArgs args)
         {
             ConnectRedis();
+        }
+
+        private void HandleOnIssue_RedisBroadcast(OnIssueEventArgs args)
+        {
+            var issue = args.IssuedIssue;
+
+            if (args.IssuedIssue is RedisIssue)
+            {
+                return;
+            }
+
+            async Task SendIssue()
+            {
+                try
+                {
+                    await RedisConnector.SendIssueAsync(issue);
+                }
+                catch (Exception e)
+                {
+                    Main.QueueMainThreadAction(() => TShock.Log.Error($"Error while sending report: {e}"));
+                }
+            }
+
+            Task.Run(SendIssue);
         }
     }
 }

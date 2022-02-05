@@ -1,6 +1,4 @@
-﻿using HelpopPlugin.Redis;
-using System;
-using System.Threading.Tasks;
+﻿using System;
 using Terraria;
 using TShockAPI;
 
@@ -82,9 +80,7 @@ namespace HelpopPlugin
                 Origin = PluginSettings.ReportOrigin,
             };
 
-            var sendTask = RedisConnector.SendIssueAsync(issue);
-            sendTask
-                .ContinueWith((task) => Main.QueueMainThreadAction(() => OnSendTaskFinish(task)));
+            args.Player.SendInfoMessage("Sending report...");
 
             try
             {
@@ -92,32 +88,12 @@ namespace HelpopPlugin
             }
             catch (Exception e)
             {
-                TShock.Log.Error($"Failed to send report locally: {e}");
-                args.Player.SendInfoMessage("Encountered error while sending report to the current server. Please contact administrators via another channel");
+                TShock.Log.Error($"Failed to send report: {e}");
+                args.Player.SendInfoMessage("Encountered error while sending report. Please contact administrators via another channel");
+                return;
             }
 
-            args.Player.SendInfoMessage("Sending report to other servers...");
-
-            void OnSendTaskFinish(Task<long> task)
-            {
-                if (task.IsCanceled)
-                {
-                    args.Player.SendErrorMessage("Report was intercepted.");
-                }
-                else if (task.IsFaulted)
-                {
-                    args.Player.SendErrorMessage("Encountered error while sending report. Please contact administrators via another channel");
-                    TShock.Log.Error($"Error while sending report: {task.Exception}");
-                }
-                else if (!task.IsCompleted)
-                {
-                    args.Player.SendErrorMessage("Report was not sent.");
-                }
-                else
-                {
-                    args.Player.SendSuccessMessage("Report successfully sent");
-                }
-            }
+            args.Player.SendSuccessMessage("Sent report.");
         }
     }
 }

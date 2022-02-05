@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a call for help.
     /// </summary>
-    public class Issue
+    public record Issue
     {
         /// <summary>
         /// Represents the issue's content.
