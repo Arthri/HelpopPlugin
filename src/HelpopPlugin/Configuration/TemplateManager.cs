@@ -66,7 +66,7 @@ namespace HelpopPlugin.Configuration
                         FileAccess.Write,
                         FileShare.None))
                     {
-                        stream.CopyTo(stream);
+                        stream.CopyTo(fs);
                     }
 
                     using (var reader = new StreamReader(stream))

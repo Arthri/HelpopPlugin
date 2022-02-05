@@ -42,7 +42,9 @@ namespace HelpopPlugin
             _configManager = new ConfigurationManager();
             _templateManager = new TemplateManager(this);
 
-            ReloadConfig();
+            _configManager.Load();
+            _templateManager.Load();
+            OnReloadConfig();
 
             AddCommand(
                 Permissions.Config_Reload,
@@ -63,6 +65,16 @@ namespace HelpopPlugin
             _configManager.Reload();
             _templateManager.Reload();
 
+            OnReloadConfig();
+        }
+
+        private void OnTShockReload(ReloadEventArgs args)
+        {
+            ReloadConfig();
+        }
+
+        private void OnReloadConfig()
+        {
             if (_tshockReloadHooked)
             {
                 if (!PluginSettings.UseTShockReload)
@@ -79,11 +91,6 @@ namespace HelpopPlugin
                     _tshockReloadHooked = true;
                 }
             }
-        }
-
-        private void OnTShockReload(ReloadEventArgs args)
-        {
-            ReloadConfig();
         }
     }
 }
