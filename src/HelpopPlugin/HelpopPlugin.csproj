@@ -25,6 +25,9 @@
     <OutputPath>bin/Release</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Configuration\ReportTemplate.scriban-txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -37,6 +40,9 @@
     <Reference Include="TShockAPI">
       <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\ServerPlugins\TShockAPI.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\ReportTemplate.scriban-txt" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
