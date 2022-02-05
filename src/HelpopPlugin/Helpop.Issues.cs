@@ -6,7 +6,7 @@ namespace HelpopPlugin
 {
     public partial class Helpop
     {
-        private readonly HandledHandlersCollection<OnIssueEventArgs> _onIssueHandlers = new HandledHandlersCollection<OnIssueEventArgs>();
+        private readonly HandledHandlersCollection<OnIssueEventArgs> _onIssueHandlers = new();
 
         /// <summary>
         /// Occurs when an issue is issued.

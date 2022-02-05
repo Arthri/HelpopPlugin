@@ -49,10 +49,7 @@ namespace HelpopPlugin
         #region List Properties
 
         /// <inheritdoc />
-        public HandledHandler<T> this[int index]
-        {
-            get => _handlers[index].Handler;
-        }
+        public HandledHandler<T> this[int index] => _handlers[index].Handler;
 
         HandledHandler<T> IList<HandledHandler<T>>.this[int index]
         {
