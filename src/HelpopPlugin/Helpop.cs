@@ -27,6 +27,7 @@ namespace HelpopPlugin
         /// <inheritdoc />
         public override void Initialize()
         {
+            Initialize_CommandList();
             Initialize_Config();
             Initialize_Credits();
             Initialize_Redis();
@@ -38,6 +39,7 @@ namespace HelpopPlugin
         {
             if (disposing)
             {
+                Dispose_CommandList();
                 Dispose_Redis();
 
                 Events.OnIssue -= HandleOnIssue;

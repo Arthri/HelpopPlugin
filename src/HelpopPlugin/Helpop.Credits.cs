@@ -23,7 +23,7 @@ MIT-0 License https://raw.githubusercontent.com/Arthri/LrndefLib/master/LICENSE"
                 ServerApi.LogWriter.PluginWriteLine(this, Credits, TraceLevel.Info);
             }
 
-            Commands.ChatCommands.Add(new Command(Command_Credits, "helpopplugin:credits", "helpop:credits"));
+            AddCommand(Command_Credits, "helpopplugin:credits", "helpop:credits");
         }
 
         private void Command_Credits(CommandArgs args)

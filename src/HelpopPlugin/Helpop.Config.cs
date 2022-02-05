@@ -44,11 +44,11 @@ namespace HelpopPlugin
 
             ReloadConfig();
 
-            Commands.ChatCommands.Add(new Command(
+            AddCommand(
                 Permissions.Config_Reload,
                 Command_ReloadConfig,
                 "helpopplugin:reload", "hopp:reload", "helpopreload"
-            ));
+            );
         }
 
         private void Command_ReloadConfig(CommandArgs args)

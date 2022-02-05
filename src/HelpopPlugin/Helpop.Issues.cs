@@ -30,11 +30,11 @@ namespace HelpopPlugin
             Events.OnIssue += HandleOnIssue;
             OnIssue += HandleOnIssue_OnMainThread;
 
-            Commands.ChatCommands.Add(new Command(
+            AddCommand(
                 Permissions.Issues_Raise,
                 Command_RaiseIssue,
                 "raiseissue", "issue", "helpop", "report", "sendhelp"
-            ));
+            );
         }
 
         private void HandleOnIssue(OnIssueEventArgs eventArgs)
