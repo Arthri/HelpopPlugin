@@ -1,6 +1,4 @@
-using HelpopAPI.Core;
 using HelpopPlugin.Configuration;
-using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;

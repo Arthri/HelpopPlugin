@@ -1,5 +1,4 @@
-﻿using HelpopAPI.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
 using System.IO;

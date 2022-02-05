@@ -1,4 +1,4 @@
-﻿namespace HelpopAPI.Core
+﻿namespace HelpopPlugin
 {
     public static class Events
     {

@@ -1,4 +1,4 @@
-﻿namespace HelpopAPI.Core
+﻿namespace HelpopPlugin
 {
     /// <summary>
     /// Represents a call for help.

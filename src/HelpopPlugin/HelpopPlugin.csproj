@@ -5,12 +5,12 @@
     <Platforms>x86</Platforms>
     <Version>0.0.1</Version>
     <Authors>Arthri</Authors>
-    <Product>HelpopAPI</Product>
-    <Description>A TShock plugin that implements the HelpopAPI</Description>
+    <Product>HelpopPlugin</Product>
+    <Description>A TShock plugin for issuing reports.</Description>
     <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <Copyright>Copyright © Arthri 2022</Copyright>
-    <PackageProjectUrl>https://github.com/Arthri/HelpopAPI</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Arthri/HelpopAPI</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Arthri/HelpopPlugin</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Arthri/HelpopPlugin</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>terraria;tshock;tshock-plugin</PackageTags>
     <LangVersion>9.0</LangVersion>
@@ -24,9 +24,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <OutputPath>bin/Release</OutputPath>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HelpopAPI.Core\HelpopAPI.Core.csproj" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\paket-files\tshockdependencies\github.com\TShock\Newtonsoft.Json.dll</HintPath>

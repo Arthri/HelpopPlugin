@@ -1,4 +1,4 @@
-﻿namespace HelpopAPI.Core
+﻿namespace HelpopPlugin
 {
     public class OnIssueEventArgs : HandledEventArgs
     {

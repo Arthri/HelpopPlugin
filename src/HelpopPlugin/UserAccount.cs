@@ -1,4 +1,4 @@
-﻿namespace HelpopAPI.Core
+﻿namespace HelpopPlugin
 {
     /// <summary>
     /// Represents the account of an <see cref="IssueUser"/>.

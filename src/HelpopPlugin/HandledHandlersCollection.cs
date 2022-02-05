@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace HelpopAPI.Core
+namespace HelpopPlugin
 {
     /// <summary>
     /// Represents an event handler that can be skipped depending on the value of <see cref="HandledEventArgs.Handled"/>.
