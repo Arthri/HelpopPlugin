@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelpopPlugin.Redis;
+using System;
 using System.Threading.Tasks;
 using Terraria;
 using TShockAPI;

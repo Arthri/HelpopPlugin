@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using HelpopPlugin.Redis;
+using StackExchange.Redis;
 using System;
 using System.Diagnostics;
 using TerrariaApi.Server;
