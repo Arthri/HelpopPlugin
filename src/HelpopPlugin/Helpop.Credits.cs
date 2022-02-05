@@ -14,7 +14,11 @@ MIT License https://raw.githubusercontent.com/StackExchange/StackExchange.Redis/
 
 LrndefLib https://github.com/Arthri/LrndefLib
 Copyright 2021 Arthri
-MIT-0 License https://raw.githubusercontent.com/Arthri/LrndefLib/master/LICENSE";
+MIT-0 License https://raw.githubusercontent.com/Arthri/LrndefLib/master/LICENSE
+
+Scriban https://github.com/scriban/scriban
+Copyright (c) 2016-2020, Alexandre Mutel All rights reserved.
+BSD 2-Clause ""Simplified"" License https://raw.githubusercontent.com/scriban/scriban/master/license.txt";
 
         private void Initialize_Credits()
         {
