@@ -1,4 +1,4 @@
-﻿using HelpopPlugin.Redis.Messages;
+using HelpopPlugin.Redis.Messages;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -55,7 +55,7 @@ namespace HelpopPlugin.Redis
         /// <summary>
         /// Used to identify this server.
         /// </summary>
-        public static readonly string ServerIdentifier = new Guid().ToString();
+        public static readonly string ServerIdentifier = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Connects to Redis.
