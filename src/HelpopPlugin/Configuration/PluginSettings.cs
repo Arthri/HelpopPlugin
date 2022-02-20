@@ -25,6 +25,7 @@ namespace HelpopPlugin.Configuration
         ///
         /// For example, with the value "<c>Server1</c>", the report message can use it like so: <c>[Report] from Server1: ...</c>
         /// </summary>
+        [JsonProperty("reportOrigin")]
         public string ReportOrigin { get; set; }
 
         /// <summary>
