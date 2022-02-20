@@ -41,7 +41,6 @@ nav:
     - License: 'LICENSE.md'
   - Configuration:
     - Index: 'Configuration/index.md'
-    - Particle Types: 'Configuration/particle-types.md'
 
 markdown_extensions:
   - footnotes
