@@ -1,0 +1,2 @@
+- `Initialization` - connect to Redis during plugin initialization (`TerrariaPlugin.Initialize()`).
+- `ServerStarted` - connect to Redis after the server starts listening for connections.

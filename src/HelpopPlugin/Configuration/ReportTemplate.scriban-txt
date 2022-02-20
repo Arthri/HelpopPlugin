@@ -1,1 +1,19 @@
 ﻿[Report]{{if issue.origin}} from [{{issue.origin}}]{{end}} by {{issue.issuer.name}}{{if issue.issuer.account}}({{issue.issuer.account.name}}){{end}}: {{issue.message}}
+{{ ##
+    Rough breakdown:
+    "if x" is used to check if x is falsey, in other words, not defined, null, or false.
+    Therefore, the {{ if x }} is used to conditionally insert text depending if it's available.
+## }}
+{{ ##
+    Example data:
+    - issue
+        - message: "There is a person with godmode here"
+        - issuer
+            - name: "John Doe"
+            - account:
+                - name: "John Doe"
+        - origin: "Server1"
+
+    will display:
+    [Report]: from Server1 by John Doe(John Doe): There is a person with godmode here
+##}}

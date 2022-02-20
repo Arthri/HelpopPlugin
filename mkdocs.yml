@@ -41,10 +41,17 @@ nav:
     - License: 'LICENSE.md'
   - Configuration:
     - Index: 'Configuration/index.md'
+    - General: 'Configuration/General.md'
+    - Redis: 'Configuration/Redis.md'
+    - Report Template: 'Configuration/Report_Template.md'
 
 markdown_extensions:
   - footnotes
   - admonition
   - pymdownx.details
   - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.smartsymbols
   - pymdownx.superfences
+  - pymdownx.snippets:
+      check_paths: true
