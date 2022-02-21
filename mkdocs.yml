@@ -3,7 +3,7 @@ site_description: HelpopPlugin is a TShock plugin that enables cross-server repo
 site_author: Arthri
 site_url: https://arthri.github.io/HelpopPlugin
 repo_url: https://github.com/Arthri/HelpopPlugin
-copyright: Copyright © Arthri 2021
+copyright: Copyright © Arthri 2022
 
 plugins:
   search: {}
