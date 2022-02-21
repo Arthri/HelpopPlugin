@@ -1,16 +1,5 @@
 from collections import defaultdict
 
-def configOptionTemplate(valueType, defaultValue, allValues=None):
-        result = f"**Default Value**: `#!json {defaultValue}`<br>"
-
-        if allValues == None:
-            allValues = typeValuesDict[valueType]
-
-        if allValues:
-            result += f"**All Values**: {allValues}"
-
-        return result
-
 def raiseInvalidValueType():
     raise ValueError(f"Unrecognized value type {valueType}")
 
@@ -31,4 +20,12 @@ typeValuesDict = defaultdict(
 def define_env(env):
     @env.macro
     def configOptionValues(valueType, defaultValue, allValues=None):
-        return configOptionTemplate(valueType, defaultValue, allValues)
+        result = f"**Default Value**: `#!json {defaultValue}`<br>"
+
+        if allValues == None:
+            allValues = typeValuesDict[valueType]
+
+        if allValues:
+            result += f"**All Values**: {allValues}"
+
+        return result
