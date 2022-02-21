@@ -29,3 +29,30 @@ def define_env(env):
             result += f"**All Values**: {allValues}"
 
         return result
+
+    @env.macro
+    def command(name, description, aliases=None, permissions=None):
+        result = f"""## {name}
+{description}"""
+
+        if aliases:
+            result += """
+
+### Aliases"""
+
+            aliases.sort()
+            for alias in aliases:
+                result += f"\n- `{alias}`"
+
+        result += """
+
+### Permissions"""
+
+        if permissions:
+            permissions.sort()
+            for permission in permissions:
+                result += f"\n- `{permission}`"
+        else:
+            result += "\nNo permissions required"
+
+        return result

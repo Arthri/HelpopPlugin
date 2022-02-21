@@ -28,11 +28,12 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
-    - navigation.top
-    - navigation.instant
-    - navigation.tabs
     - navigation.indexes
+    - navigation.instant
     - navigation.sections
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.top
 
 nav:
   - Home:
@@ -46,6 +47,10 @@ nav:
     - General: 'Configuration/General.md'
     - Redis: 'Configuration/Redis.md'
     - Report Template: 'Configuration/Report_Template.md'
+  - Commands:
+    - Issues: 'Commands/Reports.md'
+    - Maintenance: 'Commands/Maintenance.md'
+    - Uncategorized: 'Commands/Uncategorized.md'
 
 markdown_extensions:
   footnotes: {}
