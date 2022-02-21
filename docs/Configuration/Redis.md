@@ -7,14 +7,11 @@ Specifies the configuration for the Redis connection.
 ## Options
 
 ### `configString`
-**Default value**: `#!json "localhost"`
+{{ configOptionValues("string", "localhost", "") }}
 
 The string containing the Redis configuration. The documentation for the string is available [here](https://stackexchange.github.io/StackExchange.Redis/Configuration).
 
 ### `connectionTime`
-**Default value**: `#!json 0`(`#!json "Initialization"`)<br>
-**All values**:
-
---8<-- "includes/Configuration/ConnectionTimeEnum.md"
+{{ configOptionValues("ConnectionTimeEnum", "Initialization") }}
 
 When the Redis connection will be initiated.

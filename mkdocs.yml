@@ -9,6 +9,8 @@ plugins:
   search: {}
   minify:
     minify_html: true
+  macros:
+    module_name: 'docs/main'
 
 theme:
   name: material
