@@ -6,9 +6,9 @@ repo_url: https://github.com/Arthri/HelpopPlugin
 copyright: Copyright © Arthri 2021
 
 plugins:
-  - search
-  - minify:
-      minify_html: true
+  search: {}
+  minify:
+    minify_html: true
 
 theme:
   name: material
@@ -46,12 +46,12 @@ nav:
     - Report Template: 'Configuration/Report_Template.md'
 
 markdown_extensions:
-  - footnotes
-  - admonition
-  - pymdownx.details
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.snippets:
+  footnotes: {}
+  admonition: {}
+  pymdownx.details: {}
+  pymdownx.highlight: {}
+  pymdownx.inlinehilite: {}
+  pymdownx.smartsymbols: {}
+  pymdownx.superfences: {}
+  pymdownx.snippets:
       check_paths: true
