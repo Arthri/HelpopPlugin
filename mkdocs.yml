@@ -28,12 +28,21 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
+    - header.autohide
     - navigation.indexes
     - navigation.instant
     - navigation.sections
     - navigation.tabs
     - navigation.tracking
     - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Arthri/HelpopPlugin
 
 nav:
   - Home:
