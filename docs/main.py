@@ -1,16 +1,13 @@
 from collections import defaultdict
 
-class ConfigOption:
-    def __init__(self, valueType, defaultValue, allValues=None):
-        self.valueType = valueType
-        self.defaultValue = defaultValue
-        self.allValues = allValues if allValues != None else typeValuesDict[valueType]
+def configOptionTemplate(valueType, defaultValue, allValues=None):
+        result = f"**Default Value**: `#!json {defaultValue}`<br>"
 
-    def to_markdown(self):
-        result = f"**Default Value**: `#!json {self.defaultValue}`<br>"
+        if allValues == None:
+            allValues = typeValuesDict[valueType]
 
-        if self.allValues:
-            result += f"**All Values**: {self.allValues}"
+        if allValues:
+            result += f"**All Values**: {allValues}"
 
         return result
 
@@ -34,4 +31,4 @@ typeValuesDict = defaultdict(
 def define_env(env):
     @env.macro
     def configOptionValues(valueType, defaultValue, allValues=None):
-        return ConfigOption(valueType, defaultValue, allValues).to_markdown()
+        return configOptionTemplate(valueType, defaultValue, allValues)
