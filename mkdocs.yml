@@ -71,3 +71,5 @@ markdown_extensions:
   pymdownx.superfences: {}
   pymdownx.snippets:
       check_paths: true
+  toc:
+    permalink: true
