@@ -55,6 +55,8 @@ def define_env(env):
             names.sort(key=len)
             for name in names:
                 result += f'\n- `{name}`'
+        else:
+            raise ValueError(f'Command "{name}" has no names')
 
         result += f'\n\n### Permissions {{#{slugify_s(f"{name}-permissions")}}}'
 
