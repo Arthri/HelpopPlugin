@@ -35,39 +35,34 @@ def define_env(env):
     def command(name, description, aliases=None, permissions=None):
         preserve_unicode = False
 
-        mdx_configs = env.conf.get("mdx_configs")
+        mdx_configs = env.conf.get('mdx_configs')
         slugify_f = slugify
-        separator = "-"
-        if "toc" in env.conf["markdown_extensions"] and mdx_configs:
-            toc_config = mdx_configs.get("toc")
+        separator = '-'
+        if 'toc' in env.conf['markdown_extensions'] and mdx_configs:
+            toc_config = mdx_configs.get('toc')
             if toc_config:
-                preserve_unicode = toc_config.get("unicode") or preserve_unicode
-                slugify_f = toc_config.get("slugify") or slugify_f
-                separator = toc_config.get("separator") or separator
+                preserve_unicode = toc_config.get('unicode') or preserve_unicode
+                slugify_f = toc_config.get('slugify') or slugify_f
+                separator = toc_config.get('separator') or separator
 
         slugify_s = lambda value: slugify_f(value, separator, preserve_unicode)
 
-        result = f"""## {name}
-{description}"""
+        result = f'## {name}\n{description}'
 
         if aliases:
-            result += f"""
-
-### Aliases {{#{slugify_s(f"{name}-aliases")}}}"""
+            result += f'\n\n### Aliases {{#{slugify_s(f"{name}-aliases")}}}'
 
             aliases.sort()
             for alias in aliases:
-                result += f"\n- `{alias}`"
+                result += f'\n- `{alias}`'
 
-        result += f"""
-
-### Permissions {{#{slugify_s(f"{name}-permissions")}}}"""
+        result += f'\n\n### Permissions {{#{slugify_s(f"{name}-permissions")}}}'
 
         if permissions:
             permissions.sort()
             for permission in permissions:
-                result += f"\n- `{permission}`"
+                result += f'\n- `{permission}`'
         else:
-            result += "\nNo permissions required"
+            result += '\nNo permissions required'
 
         return result
