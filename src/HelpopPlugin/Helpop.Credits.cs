@@ -8,7 +8,7 @@ namespace HelpopPlugin
     {
         public static readonly string Credits = @"HelpopPlugin uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
 
-StackExchange.Redis https://stackexchange.github.io/StackExchange.Redis/
+StackExchange.Redis https://stackexchange.github.io/StackExchange.Redis
 Copyright (c) 2014 Stack Exchange
 MIT License https://raw.githubusercontent.com/StackExchange/StackExchange.Redis/main/LICENSE
 

@@ -51,6 +51,7 @@ nav:
     - Usage: 'usage.md'
     - Development: 'development.md'
     - License: 'LICENSE.md'
+    - Acknowledgements: 'Acknowledgements.md'
   - Configuration:
     - Index: 'Configuration/index.md'
     - General: 'Configuration/General.md'
@@ -68,6 +69,8 @@ markdown_extensions:
   pymdownx.details: {}
   pymdownx.highlight: {}
   pymdownx.inlinehilite: {}
+  pymdownx.magiclink: {}
+  pymdownx.saneheaders: {}
   pymdownx.smartsymbols: {}
   pymdownx.superfences: {}
   pymdownx.snippets:
