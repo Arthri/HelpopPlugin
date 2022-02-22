@@ -62,6 +62,7 @@ nav:
     - Uncategorized: 'Commands/Uncategorized.md'
 
 markdown_extensions:
+  attr_list: {}
   footnotes: {}
   admonition: {}
   pymdownx.details: {}

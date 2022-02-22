@@ -1,4 +1,5 @@
 from collections import defaultdict
+from markdown.extensions.toc import slugify
 
 def raiseInvalidValueType():
     raise ValueError(f"Unrecognized value type {valueType}")
@@ -32,21 +33,35 @@ def define_env(env):
 
     @env.macro
     def command(name, description, aliases=None, permissions=None):
+        preserve_unicode = False
+
+        mdx_configs = env.conf.get("mdx_configs")
+        slugify_f = slugify
+        separator = "-"
+        if "toc" in env.conf["markdown_extensions"] and mdx_configs:
+            toc_config = mdx_configs.get("toc")
+            if toc_config:
+                preserve_unicode = toc_config.get("unicode") or preserve_unicode
+                slugify_f = toc_config.get("slugify") or slugify_f
+                separator = toc_config.get("separator") or separator
+
+        slugify_s = lambda value: slugify_f(value, separator, preserve_unicode)
+
         result = f"""## {name}
 {description}"""
 
         if aliases:
-            result += """
+            result += f"""
 
-### Aliases"""
+### Aliases {{#{slugify_s(f"{name}-aliases")}}}"""
 
             aliases.sort()
             for alias in aliases:
                 result += f"\n- `{alias}`"
 
-        result += """
+        result += f"""
 
-### Permissions"""
+### Permissions {{#{slugify_s(f"{name}-permissions")}}}"""
 
         if permissions:
             permissions.sort()
