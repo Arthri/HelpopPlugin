@@ -5,9 +5,9 @@ Commands relating to plugin maintenance.
     "Reload Plugin Config",
     "Reloads the plugin configuration",
     [
-        'helpopplugin:reload',
         'hopp:reload',
         'helpopreload',
+        'helpopplugin:reload',
     ],
     [
         'helpopplugin.config.reload',

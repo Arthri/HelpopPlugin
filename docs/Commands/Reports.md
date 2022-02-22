@@ -5,11 +5,11 @@ Commands relating to reports.
     "Report",
     "Raises an issue",
     [
-        'raiseissue',
         'issue',
         'helpop',
         'report',
         'sendhelp',
+        'raiseissue',
     ],
     [
         'helpopplugin.issues.raise',

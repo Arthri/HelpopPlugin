@@ -52,14 +52,14 @@ def define_env(env):
         if aliases:
             result += f'\n\n### Aliases {{#{slugify_s(f"{name}-aliases")}}}'
 
-            aliases.sort()
+            aliases.sort(key=len)
             for alias in aliases:
                 result += f'\n- `{alias}`'
 
         result += f'\n\n### Permissions {{#{slugify_s(f"{name}-permissions")}}}'
 
         if permissions:
-            permissions.sort()
+            permissions.sort(key=len)
             for permission in permissions:
                 result += f'\n- `{permission}`'
         else:
