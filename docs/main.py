@@ -32,7 +32,7 @@ def define_env(env):
         return result
 
     @env.macro
-    def command(name, description, aliases=None, permissions=None):
+    def command(name, description, names=None, permissions=None):
         preserve_unicode = False
 
         mdx_configs = env.conf.get('mdx_configs')
@@ -49,12 +49,12 @@ def define_env(env):
 
         result = f'## {name}\n{description}'
 
-        if aliases:
-            result += f'\n\n### Aliases {{#{slugify_s(f"{name}-aliases")}}}'
+        if names:
+            result += f'\n\n### Names {{#{slugify_s(f"{name}-names")}}}'
 
-            aliases.sort(key=len)
-            for alias in aliases:
-                result += f'\n- `{alias}`'
+            names.sort(key=len)
+            for name in names:
+                result += f'\n- `{name}`'
 
         result += f'\n\n### Permissions {{#{slugify_s(f"{name}-permissions")}}}'
 
