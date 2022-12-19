@@ -23,7 +23,7 @@ def define_env(env):
     def configOptionValues(valueType, defaultValue, allValues=None):
         result = f'**Default Value**: `#!json {defaultValue}`<br>'
 
-        if allValues == None:
+        if allValues is None:
             allValues = typeValuesDict[valueType]
 
         if allValues:
